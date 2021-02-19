@@ -1,0 +1,31 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+<br><a href="{% url 'index'%}">
+    Back to index
+    </a>
+<p>Choose a trained regression to apply</p>
+
+<table>
+<tr>
+    <td>Name</td>
+    <td>Pick</td>
+    <td>Delete</td>
+</tr>
+{% if training_sets is not None %}
+    {% for set in training_sets %}
+        <tr>
+            <td>{{ set.model_name }}</td>
+            <td>
+                <a href="{% url 'trained_model_details' trainset_id=set.id %}">
+                Open
+                </a>
+            </td>
+        <td>
+               <<a href="{% url 'delete' trainset_id=set.id %}">
+                Delete
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+{% endif %}
+</table>

@@ -1,0 +1,35 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+ <br><a href="{% url 'index'%}">
+    Back to index
+    </a>
+<p>Training settings:</p>
+
+<form method="POST" enctype="multipart/form-data" action={% url "training_start" %}>
+    {% csrf_token %}
+    Method for regression:
+     <label>
+        <select id="regchoice" name="regchoice">
+          <option value="" selected>None</option>
+          {% for r in regressor_names %}
+          <option value="{{r }}">{{ r }}</option>
+          {% endfor %}
+        </select>
+    </label>
+
+    <br>
+    <p>Select the features to examine</p>
+    {{ feature }}
+    <ol>
+        {% for feature in features %}
+            <li>
+                <label>
+                    <input type="checkbox" name="{{ feature }}">
+                    {{ feature }}
+                </label>
+            </li>
+        {% endfor %}
+    </ol>
+
+    <button type="submit">Train</button>
+</form>

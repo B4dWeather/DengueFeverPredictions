@@ -1,0 +1,24 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"/>
+
+<p>Details on training:</p>
+
+{% if set is not None %}
+    Model: {{ set.model_name }}
+
+    <br>
+    Status: {{ status }}
+
+    <br>
+    <p>Actions:</p>
+    <a href="{% url 'apply_model'  trainset_id=set.id %}"> Predict current dataset labels </a>
+    <br>
+    <a href="{% url 'download'  trainset_id=set.id %}"> Download results as .csv </a>
+    <br>
+    <a href="{% url 'delete' trainset_id=set.id %}">
+    Delete this model
+    </a>
+    <br><a href="{% url 'index' %}">
+    Back to index
+</a>
+{% endif %}

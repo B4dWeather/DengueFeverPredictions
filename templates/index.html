@@ -1,0 +1,18 @@
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'style.css' %}" />
+
+<p>Index Page</p>
+
+{% if result %}
+    Last operation: {{ result }}
+{% else %}
+    Welcome!
+{% endif %}
+<br>
+<a href="{% url 'csv_uploader_data'%}"> Upload Dataset </a>
+<br>
+<a href="{% url 'csv_uploader_labels'%}"> Upload Results for Training Set </a>
+<br>
+<a href="{% url 'training_page'%}"> Training Page </a>
+<br>
+<a href="{% url 'browse_trained_models'%}"> Browse trained models </a>
